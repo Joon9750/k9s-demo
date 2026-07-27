@@ -2,6 +2,8 @@ spec:
   repoURL: https://github.com/Joon9750/k9s-demo.git
   targetRevision: main
   destinationServer: https://kubernetes.default.svc
+  # true=수동 변경을 git대로 자동 원복 / false=수동 변경 유지(OutOfSync 표시)
+  selfHeal: false
 
 apps:
   - name: demo-app

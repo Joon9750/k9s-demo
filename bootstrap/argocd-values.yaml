@@ -1,0 +1,4 @@
+# argocd-server를 HTTP(insecure)로 → port-forward 8080:80 로 단순 접근
+configs:
+  params:
+    server.insecure: true

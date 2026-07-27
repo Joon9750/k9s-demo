@@ -1,0 +1,12 @@
+# Gradle / Kotlin build outputs
+apps/demo-api/.gradle/
+apps/demo-api/build/
+**/*.class
+
+# Secrets / local overrides
+*.local
+.env
+*.token
+
+# OS / editor
+.DS_Store

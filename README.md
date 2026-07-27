@@ -1,6 +1,6 @@
 # k9s-demo
 
-k9s - https://k9scli.io/
+k9s 공식 문서 : https://k9scli.io/
 
 로컬 kind + ArgoCD GitOps 실습 환경. 목적은 **k9s를 손에 익히는 것**.
 

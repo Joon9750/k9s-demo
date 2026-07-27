@@ -2,8 +2,16 @@ replicaCount: 1
 
 image:
   repository: localhost:5001/demo-api
-  tag: "0.1.0"
+  tag: "0.2.0"
   pullPolicy: IfNotPresent
+
+# ConfigMap → 앱의 GREETING 환경변수로 주입
+config:
+  greeting: "annyeong"
+
+# Secret → 앱의 DEMO_TOKEN 환경변수로 주입 (앱은 안 쓰고, k9s 관찰용)
+secret:
+  token: "s3cr3t-demo-token"
 
 service:
   port: 80

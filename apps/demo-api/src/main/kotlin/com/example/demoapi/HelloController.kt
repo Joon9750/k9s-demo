@@ -10,6 +10,9 @@ data class HelloResponse(val message: String, val app: String, val version: Stri
 @RequestMapping("/api")
 class HelloController {
     @GetMapping("/hello")
-    fun hello(): HelloResponse =
-        HelloResponse(message = "hello", app = "demo-api", version = "0.1.0")
+    fun hello(): HelloResponse {
+        // ConfigMap → env GREETING (없으면 기본 "hello")
+        val greeting = System.getenv("GREETING") ?: "hello"
+        return HelloResponse(message = greeting, app = "demo-api", version = "0.2.0")
+    }
 }

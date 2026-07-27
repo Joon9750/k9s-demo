@@ -6,7 +6,7 @@ IMAGE="${REG}/demo-api:${TAG}"
 APP_DIR="$(cd "$(dirname "$0")/../apps/demo-api" && pwd)"
 
 echo "==> bootJar"
-( cd "$APP_DIR" && ./gradlew bootJar -q )
+( cd "$APP_DIR" && ./gradlew clean bootJar -q )
 
 echo "==> docker build ${IMAGE}"
 docker build -t "demo-api:${TAG}" -t "${IMAGE}" "$APP_DIR"

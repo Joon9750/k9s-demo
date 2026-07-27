@@ -10,6 +10,6 @@ class HelloControllerTest {
         val r = HelloController().hello()
         assertEquals("hello", r.message)
         assertEquals("demo-api", r.app)
-        assertEquals("0.1.0", r.version)
+        assertEquals("0.2.0", r.version)
     }
 }

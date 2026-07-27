@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: localhost:5001/demo-api
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 8080
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

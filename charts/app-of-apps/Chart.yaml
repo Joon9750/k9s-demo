@@ -1,0 +1,5 @@
+apiVersion: v2
+name: app-of-apps
+description: ArgoCD app-of-apps 루트 차트
+type: application
+version: 0.1.0

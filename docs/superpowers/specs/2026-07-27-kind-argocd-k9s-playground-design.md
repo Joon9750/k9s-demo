@@ -17,8 +17,8 @@ REST API)를 배포한 뒤, 그 위에서 k9s로 리소스를 관찰·조작하�
 
 ## 2. 역할 분담 (핵심 결정)
 
-- **자동 (Claude가 스크립트로 수행)**: colima 기동 → kind 클러스터 + 로컬 레지스트리 →
-  ArgoCD(Helm) → app-of-apps → demo-api 빌드·푸시 → 배포 및 동작 검증까지 전부.
+- **자동 (Claude가 스크립트로 수행)**: (Docker Desktop은 사용자가 기동) kind 클러스터 +
+  로컬 레지스트리 → ArgoCD(Helm) → app-of-apps → demo-api 빌드·푸시 → 배포 및 동작 검증까지 전부.
 - **수동 (사용자가 직접)**: 이미 떠 있는 클러스터에서 우측 터미널에 `k9s`를 실행하고,
   `docs/k9s-practice.md`의 실습 시나리오를 손으로 조작하며 연습.
 
@@ -33,14 +33,14 @@ REST API)를 배포한 뒤, 그 위에서 k9s로 리소스를 관찰·조작하�
 | kubectl v1.33.4, helm v3.18.3 | ✅ 설치됨 |
 | JDK 21 (Corretto, sdkman) | ✅ Spring Boot 4 baseline(Java 17+) 충족 |
 | Homebrew 6.0.11 | ✅ |
-| colima / Docker Desktop / Rancher Desktop | 모두 설치됨 → **colima 사용** |
+| colima / Docker Desktop / Rancher Desktop | 모두 설치됨 → **Docker Desktop 사용** (사용자가 기동, Server 28.3.0, context `desktop-linux`) |
 | kind, k9s, argocd CLI | ❌ 미설치 → brew로 설치 |
 | GitHub repo Joon9750/k9s-demo | 존재하나 비어 있음 → 채워 넣음 |
 
 ## 4. 아키텍처
 
 ### 4.1 런타임 & 클러스터
-- 컨테이너 런타임: **colima** (`colima start`, 순수 CLI, 재현 가능)
+- 컨테이너 런타임: **Docker Desktop** (사용자가 기동, context `desktop-linux`)
 - 클러스터: **kind**, 이름 `k9s-demo`, 단일 control-plane 노드
 - **로컬 레지스트리**: `registry:2` 컨테이너를 `localhost:5001`에 기동하고 kind 노드의
   containerd에 endpoint 매핑(kind-with-registry 표준 패턴). 데모 이미지는
@@ -102,7 +102,7 @@ k9s-demo/
 ## 6. 부트스트랩 흐름 (`scripts/up.sh`)
 
 1. 필요한 도구 확인/설치 (`kind`, `k9s`, `argocd` — brew)
-2. `colima start` (미실행 시) 및 docker context 확인
+2. Docker Desktop 데몬 확인 (`docker info`), context `desktop-linux`
 3. 로컬 레지스트리 컨테이너 기동 (`localhost:5001`)
 4. `kind create cluster --config clusters/local/kind-config.yaml`
 5. 레지스트리를 kind 네트워크에 연결 + registry 힌트 ConfigMap 적용
@@ -157,7 +157,7 @@ apps/demo-api 코드 수정
 
 - `kind delete cluster --name k9s-demo`
 - 로컬 레지스트리 컨테이너 제거
-- (선택) `colima stop`
+- (Docker Desktop 자체는 사용자가 관리)
 
 ## 12. 범위 밖 (YAGNI)
 

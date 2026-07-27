@@ -1,5 +1,7 @@
 # k9s-demo
 
+k9s - https://k9scli.io/
+
 로컬 kind + ArgoCD GitOps 실습 환경. 목적은 **k9s를 손에 익히는 것**.
 
 Spring Boot 4(Kotlin) REST API를 ArgoCD(app-of-apps, 모든 것을 Helm으로)로 배포한다.
